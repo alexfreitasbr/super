@@ -1,11 +1,11 @@
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
-import Home from './page.tsx'
+import RootLayout from './layout.tsx'
  
 describe('Home', () => {
-  it('renders a heading', () => {
-    render(<Home />)
-    const home = screen.getByTestId('main-layout')
+  it('renders a RootLayout', () => {
+    render(<RootLayout />)
+    const home = screen.getByTestId('main-Layout')
     expect(home).toBeInTheDocument()
   })
 })
