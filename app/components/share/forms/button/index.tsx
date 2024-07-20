@@ -1,11 +1,16 @@
+'use client'
+import Link from "next/link"
+import { useFormStatus } from "react-dom"
 type ButtonProps = {
     style?: "primary" | "secondary" | "success" | "warning" | "danger" | "info" | "light" | "dark" | "link"
     label: string
     type?: "submit" | "reset" | "button" 
-    disabled: boolean
+    disabled?: boolean
+    link?: string
 }
 
-export function Button({ style = "primary", label, type="button", disabled=false }: ButtonProps) {
+export function Button({ style = "primary", label, type="button", disabled=false, link }: ButtonProps) {
+    const {pending } = useFormStatus()
 
     const btnTypes: Record<string, string> = {
         "primary": "text-white bg-indigo-500 hover:bg-indigo-600",
@@ -23,5 +28,9 @@ export function Button({ style = "primary", label, type="button", disabled=false
         return btnTypes[typeBtn] || "text-white bg-primary";
     }
 
-    return <button type={type} disabled={disabled} className={`w-full p-2 bg-slate-900 rounded-md border border-slate-800 text-base ${btnStyle(style)} disabled:opacity-50 transition-all duration-400` }>{label }</button>;
+    if(link ) return <Link href={link} className={`w-full p-2 bg-slate-900 rounded-md border border-slate-800 text-base text-center ${btnStyle(style)} disabled:opacity-50 transition-all duration-400`} data-testid="link-btn">{ label }</Link>
+
+    return <button type={type} disabled={disabled || pending} className={`w-full p-2 bg-slate-900 rounded-md border border-slate-800 text-base ${btnStyle(style)} disabled:opacity-50 transition-all duration-400`} data-testid="action-btn">
+        { pending ? "Submitting...": label }
+        </button>;
 }

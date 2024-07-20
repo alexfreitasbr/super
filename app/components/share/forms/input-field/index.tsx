@@ -1,10 +1,10 @@
 "use client"
 import { useState } from "react"
-
+import { ToolTips} from "@/messages/authenticate";
 import { IconAlertCircleFilled, IconHelpCircleFilled } from '@tabler/icons-react';
 
 type InputProps = {
-    message?: string
+    message?: string | null
     label: string
     title?: string
     placeHolder?: string
@@ -42,7 +42,7 @@ export function Input({ label, placeHolder, title, type = "text", message, requi
     if (labelIcon && required) labelIconPopUp = <span className="group  flex cursor-pointer items-center gap-1">
        { labelIcon}
         <span className={`invisible group-hover:visible rounded-md ${requiredColor} text-base min-w-max  transition-all duration-400 text-center`}>
-            Obrigatorio
+        { ToolTips.required}
         </span>
     </span>
 
