@@ -7,9 +7,7 @@ export type AuthType = {
     name:string | null,
 }
 
-export type RootStateType = {
-    auth:AuthType
-}
+
 
 export type ValidateLoginMessagesType = {
     userError:string | null,
@@ -18,3 +16,8 @@ export type ValidateLoginMessagesType = {
     Autenticated:string | null,
     nameError:string | null,
 } 
+
+
+export type RootStateType = {
+    auth:AuthType
+}
