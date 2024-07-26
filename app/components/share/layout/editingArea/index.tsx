@@ -1,17 +1,17 @@
 
-import { PropertyRootStateType } from '@/types/Property'
+import { SelectedRootStateType } from '@/types/SuperTag'
 import { useSelector } from 'react-redux'
 
 export function EditingArea(){
-    const selectedProperty = useSelector((state: PropertyRootStateType) => state.property.editing)
-    console.log(selectedProperty)
+    const selected = useSelector((state: SelectedRootStateType) => state.selected.superTag)
+    console.log(selected)
     return <div className="flex flex-1 bg-black px-6 py-12">
         
-        {selectedProperty && <div className="text-white">
-            <p>{selectedProperty.id}</p>
-            <p>{selectedProperty.description}</p>
-            <p>{selectedProperty.type}</p>
-            <p>{selectedProperty.value}</p>
+        {selected && <div className="text-white">
+            <p>{selected.id}</p>
+            <p>{selected.name}</p>
+            <p>{selected.icon}</p>
+            <p>{selected.type}</p>
             </div>}
     </div>
 }

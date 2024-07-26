@@ -19,3 +19,13 @@ export type SuperTagsRootStateType = {
 }
 
 export type ItitialSuperTags = {list:SupertagsType | []}
+
+export type ItitialSelected = {
+    superTag:SupertagsType | null
+}
+
+export type SelectedRootStateType = {
+    selected:{
+        superTag:SuperTagType
+    }      
+}
