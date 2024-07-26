@@ -1,10 +1,5 @@
-import { SuperTagType, SupertagsType } from '@/types/SuperTag'
+import { ItitialSuperTags } from '@/types/SuperTag'
 
-
-type ititial = {list:SupertagsType | []}
-
-export const SuperTagsSliceInitalState:ititial   = {
+export const SuperTagsSliceInitalState:ItitialSuperTags   = {
         list:  []
 }
-
-

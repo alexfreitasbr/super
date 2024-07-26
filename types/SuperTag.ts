@@ -17,3 +17,5 @@ export type SuperTagsRootStateType = {
         list:SupertagsType | []
     }      
 }
+
+export type ItitialSuperTags = {list:SupertagsType | []}

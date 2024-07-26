@@ -1,5 +1,6 @@
-import { PropertySliceType } from '@/types/Property'
+import {ItitialProperty } from '@/types/Property'
 
-export const PropertyInitalState:PropertySliceType = {
-    property: null
+
+export const PropertyInitalState:ItitialProperty = {
+    editing: null
 }

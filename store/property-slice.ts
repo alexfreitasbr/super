@@ -2,18 +2,18 @@ import { createSlice }  from '@reduxjs/toolkit'
 import { PropertyInitalState } from '@/constants/propertyInitial'
 
 const properyReducer = createSlice({
-    name:'supertag',
+    name:'property',
     initialState:PropertyInitalState,
     reducers: {
-        setProperty(state,action){
-            state.property = action.payload
+        selectProperty(state,action){
+            state.editing = action.payload
         },
-        deleteProperty(state,action){
-            state.property = null
+        unselectProperty(state){
+            state.editing= null
         },
     }
 })
 
 export default properyReducer.reducer
 
-export const properyActions = properyReducer.actions
+export const propertyActions = properyReducer.actions
