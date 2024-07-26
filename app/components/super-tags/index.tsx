@@ -2,11 +2,14 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { superTagActions } from '@/store/supertag-slice'
+import { propertyActions } from '@/store/property-slice'
+
 import { redirect } from 'next/navigation'
 import { useSelector } from 'react-redux'
 import { AutenticatedType, RootStateType } from '@/types/auth'
 import { supertagsMock } from '@/mock/supertags'
 import { SuperTagType, SuperTagsRootStateType, SupertagsType } from '@/types/SuperTag'
+import { PropertyRootStateType, PropertyType } from '@/types/Property'
 export function SuperTags() {
     const autenticated: AutenticatedType = useSelector((state: RootStateType) => state.auth.autenticated)
     if (autenticated) redirect('/login')
@@ -20,6 +23,7 @@ export function SuperTags() {
     }, [dispatch])
 
     const superTags = useSelector((state: SuperTagsRootStateType) => state.superTag.list)
+    const selectedProperty = useSelector((state: PropertyRootStateType) => state.property.editing)
     const renderSuperTags = () => {
         if (superTags && superTags.length > 0)
 
@@ -38,6 +42,7 @@ export function SuperTags() {
                     <button onClick={() => handleDeleteProperty(item.id)}>-prop-</button>
                     <button onClick={() => handleReplaceProperty(item.id)}>*prop*</button>
                 </li>
+                
             }
             )
         return <p> vazio</p>
@@ -94,7 +99,7 @@ export function SuperTags() {
     }
 
     function handleDeleteProperty(id: number) {
-        dispatch(superTagActions.deleteSuperTagProperty({supertagId:id,propertyId:2}))
+        dispatch(superTagActions.deleteSuperTagProperty({ supertagId: id, propertyId: 2 }))
     }
 
     function handleReplaceProperty(id: number) {
@@ -113,11 +118,38 @@ export function SuperTags() {
         ))
     }
 
-    console.log(superTags)
+    function handleSelectProperty(id: number) {
+
+        dispatch(propertyActions.selectProperty(
+            {
+                    id: 2,
+                    description: "prop22",
+                    type: 'I',
+                    value: "value22",
+                    supertag_id: 1
+                }
+            
+        ))
+    }
+
+    function handleunselectProperty() {
+        dispatch(propertyActions.unselectProperty())
+    }
+
+    
 
     return <div className="flex min-h-screen w-full gap-10 items-center justify-between p-24 text-white">
         <ul className=' flex-1'>{renderSuperTags()}</ul>
-        <div className='  flex-1'>xxxx</div>
+        <div className='  flex-1'><button onClick={() => handleSelectProperty(1)}>+prop+</button><button onClick={() => handleunselectProperty()}>-prop-</button>
+            {selectedProperty && <div>
+                    <p>{selectedProperty?.description}</p>
+                    <p>{selectedProperty?.type}</p>
+                    <p>{selectedProperty?.value}</p>
+                </div>
+                
+                }
+        
+        </div>
 
     </div>
 }
