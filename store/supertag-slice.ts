@@ -1,60 +1,88 @@
-import { createSlice }  from '@reduxjs/toolkit'
-import {SuperTagsSliceInitalState} from '@/constants/supertagInitial'
-
+import { createSlice } from '@reduxjs/toolkit'
+import { SuperTagsSliceInitalState } from '@/constants/supertagInitial'
+import { SupertagsType } from '@/types/SuperTag'
 const superTagReducer = createSlice({
-    name:'supertag',
-    initialState:SuperTagsSliceInitalState,
+    name: 'supertag',
+    initialState: SuperTagsSliceInitalState,
     reducers: {
-        setSuperTagList(state,action){
+        setSuperTagList(state, action) {
             state.list = action.payload
         },
-        setSuperTagProperties(state,action){
-            const properties = action.payload.properties
-            const supertagId = action.payload.supertag.id
-            if (state.list && state.list.length > 0) {
-                const supertagIndex = state.list.findIndex(tag => tag.supertag.id === supertagId);
-                if (supertagIndex !== -1) {
-                    state.list[supertagIndex].properties = properties;
+        createSuperTag(state, action) {
+            const supertagIndex = state.list.findIndex(tag => tag.id === action.payload.id);
+            if (supertagIndex !== -1) return
+            state.list = [...state.list, action.payload]
+        },
+        replaceSuperTag(state, action) {
+            const newList = [...state.list] as SupertagsType
+            const supertagIndex = newList.findIndex(tag => tag.id === action.payload.id);
+            if (supertagIndex !== -1) {
+                newList[supertagIndex] = action.payload
+                state.list = newList
+            } 
+        },
+        deleteSuperTag(state, action) {
+            const currentList = [...state.list] as SupertagsType
+            const newList: SupertagsType = currentList.filter(item => item.id !== action.payload)
+            state.list = newList
+        },
+        setSuperTagProperties(state, action) {
+            const properties = [...action.payload.properties]
+            const supertagId = action.payload.id
+            const newList = [...state.list] as SupertagsType
+
+            const supertagIndex = state.list.findIndex(tag => tag.id === supertagId);
+            if (supertagIndex !== -1) {
+                if (newList[supertagIndex]['properties'] === undefined) {
+                    newList[supertagIndex]['properties'] = properties
+                    state.list = newList
                 }
             }
         },
-        addSuperTagProperties(state,action){
+        createSuperTagProperty(state, action) {
             const property = action.payload.property
-            const supertagId = action.payload.supertag.id
-            if (state.list && state.list.length > 0) {
-                const supertagIndex = state.list.findIndex(tag => tag.supertag.id === supertagId);
-                state.list[supertagIndex].properties?.push(property) 
-            }
-        },
-        deleteSuperTagProperties(state,action){
-            const supertagId = action.payload.supertag.id
-            const propertyId = action.payload.property.id
-            if (state.list && state.list.length > 0) {
-                const supertagIndex = state.list.findIndex(tag => tag.supertag.id === supertagId);
-                if (supertagIndex !== -1) {
-                    if (state.list[supertagIndex].properties && state.list[supertagIndex].properties.length > 0) {
-                        const properties = state.list[supertagIndex].properties.filter(property => property.id !== propertyId);
-                        state.list[supertagIndex].properties = properties
-                    }
+            const supertagId = action.payload.id
+            const newList = [...state.list] as SupertagsType
+
+
+            const supertagIndex = state.list.findIndex(tag => tag.id === supertagId);
+            if (supertagIndex !== -1) {
+                if (newList[supertagIndex]['properties'] === undefined) {
+                    newList[supertagIndex]['properties'] = [property]
+                } else {
+                    newList[supertagIndex]['properties'] = [...newList[supertagIndex]['properties'], property]
                 }
+                state.list = newList
+            }
+
+        },
+        deleteSuperTagProperty(state, action) {
+            const propertyId = action.payload.propertyId
+            const supertagId = action.payload.supertagId
+            const newList = [...state.list] as SupertagsType
+
+            const supertagIndex = state.list.findIndex(tag => tag.id === supertagId);
+            if (supertagIndex !== -1) {
+                if (newList[supertagIndex]['properties'] === undefined) return
+                const properties = newList[supertagIndex].properties
+                const newProperties = properties.filter(item => item.id !== propertyId)
+                newList[supertagIndex].properties = newProperties
+                state.list = newList
             }
         },
-        replaceTagProperties(state,action){
-            const newProperty = action.payload.property
-            const supertagId = action.payload.supertag.id
-            const propertyId = action.payload.property.id
-            if (state.list && state.list.length > 0) {
-                const supertagIndex = state.list.findIndex(tag => tag.supertag.id === supertagId);
-                if (supertagIndex !== -1) {
-                    if (state.list[supertagIndex].properties && state.list[supertagIndex].properties.length > 0) {
-                        const newProperties = state.list[supertagIndex].properties.map(property => {
-                            if(property.id === propertyId){
-                                return newProperty
-                            }
-                             return  property
-                        })
-                        state.list[supertagIndex].properties = newProperties
-                    }
+        replaceSuperTagProperties(state, action) {
+            const property = action.payload.property
+            const supertagId = action.payload.supertagId
+            const newList = [...state.list] as SupertagsType
+            const supertagIndex = newList.findIndex(tag => tag.id === supertagId);
+            if (supertagIndex !== -1) {
+                if (newList[supertagIndex]['properties'] === undefined) return
+                const properties = newList[supertagIndex].properties
+                const propertyIndex = properties.findIndex(prop => prop.id === property.id);
+                if (propertyIndex !== -1) {
+                    properties[propertyIndex] = property
+                    newList[supertagIndex].properties = properties
+                    state.list = newList
                 }
             }
         },
