@@ -3,13 +3,13 @@ import Link from "next/link"
 import { useFormStatus } from "react-dom"
 type ButtonProps = {
     style?: "primary" | "secondary" | "success" | "warning" | "danger" | "info" | "light" | "dark" | "link"
-    label: string
+    children: React.ReactNode
     type?: "submit" | "reset" | "button" 
     disabled?: boolean
     link?: string
 }
 
-export function Button({ style = "primary", label, type="button", disabled=false, link }: ButtonProps) {
+export function Button({ style = "primary", children, type="button", disabled=false, link }: ButtonProps) {
     const {pending } = useFormStatus()
 
     const btnTypes: Record<string, string> = {
@@ -25,12 +25,14 @@ export function Button({ style = "primary", label, type="button", disabled=false
     };
 
     function btnStyle(typeBtn: string): string {
-        return btnTypes[typeBtn] || "text-white bg-primary";
+        return btnTypes[typeBtn] || "text-white bg-indigo-500 hover:bg-indigo-600";
     }
 
-    if(link ) return <Link href={link} className={`w-full p-2 bg-slate-900 rounded-md border border-slate-800 text-base text-center ${btnStyle(style)} disabled:opacity-50 transition-all duration-400`} data-testid="link-btn">{ label }</Link>
+    if(link ) return <Link href={link} className={`w-full p-2 bg-slate-900 rounded-md border text-base text-center ${btnStyle(style)} disabled:opacity-50 transition-all duration-400`} data-testid="link-btn">
+        <span className="flex gap-2"> { children } </span>
+        </Link>
 
-    return <button type={type} disabled={disabled || pending} className={`w-full p-2 bg-slate-900 rounded-md border border-slate-800 text-base ${btnStyle(style)} disabled:opacity-50 transition-all duration-400`} data-testid="action-btn">
-        { pending ? "Submitting...": label }
+    return <button type={type} disabled={disabled || pending} className={`flex justify-center w-full p-2 rounded-md border border-slate-800 text-base ${btnStyle(style)} disabled:opacity-50 transition-all duration-400`} data-testid="action-btn">
+        <span className="flex gap-2"> { pending ? "Submitting...": children } </span>
         </button>;
 }

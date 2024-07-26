@@ -4,15 +4,12 @@ import { useDispatch } from 'react-redux'
 import { superTagActions } from '@/store/supertag-slice'
 import { propertyActions } from '@/store/property-slice'
 
-import { redirect } from 'next/navigation'
 import { useSelector } from 'react-redux'
-import { AutenticatedType, RootStateType } from '@/types/auth'
 import { supertagsMock } from '@/mock/supertags'
-import { SuperTagType, SuperTagsRootStateType, SupertagsType } from '@/types/SuperTag'
-import { PropertyRootStateType, PropertyType } from '@/types/Property'
+import { SuperTagType, SuperTagsRootStateType} from '@/types/SuperTag'
+import { PropertyRootStateType} from '@/types/Property'
 export function SuperTags() {
-    const autenticated: AutenticatedType = useSelector((state: RootStateType) => state.auth.autenticated)
-    if (autenticated) redirect('/login')
+
 
     const dispatch = useDispatch()
 

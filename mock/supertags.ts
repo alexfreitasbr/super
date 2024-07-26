@@ -4,7 +4,23 @@ export const  supertagsMock = [
         name: 'tag1',
         icon: "icone1",
         type: 1,
-        father_id:  null
+        father_id:  null,
+        properties:[{
+            id: 1,
+            description: "prop1",
+            type: 'C',
+            value: "value1",
+            supertag_id:1
+        },
+        {
+            id: 1,
+            description: "prop2",
+            type: 'C',
+            value: "value2",
+            supertag_id:2
+        },
+    
+    ]
     },
     {
         id: 2,
@@ -15,7 +31,7 @@ export const  supertagsMock = [
     },
     {
         id: 3,
-        name: 'tag4',
+        name: 'tag3',
         icon: "icone15",
         type: 5,
         father_id:  1
