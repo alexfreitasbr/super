@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { superTagActions } from '@/store/supertag-slice'
 import { supertagsMock } from '@/mock/supertags'
 import { SuperTagsRootStateType } from '@/types/SuperTag'
-import { SuperTagItem } from '../superTagItem'
+import { SuperTagsItens } from '../superTagItens'
 export function MenuSuperTags() {
     const dispatch = useDispatch()
 
@@ -14,27 +14,13 @@ export function MenuSuperTags() {
         ))
     }, [dispatch])
 
-
-    const superTags = useSelector((state: SuperTagsRootStateType) => state.superTag.list)
-
-    const renderSuperTags = () => {
-        if (superTags && superTags.length > 0) {
-            return superTags?.map(item => {
-                return <SuperTagItem key={item.id+item.name} label={item.name} item={item} />
-            })
-        }
-        return <p> vazio</p>
-    }
+    const superTags = useSelector((state: SuperTagsRootStateType) => state.superTag.list.filter((item)=>!item.father_id ))
 
     return (
         <>
             <section>
                 <h2 className="text-white text-base font-semibold">SUPERTAGS</h2>
-                <nav>
-                    <ul className="flex flex-col gap-1 text-white text-base ">
-                        {renderSuperTags()}
-                    </ul>
-                </nav>
+                <SuperTagsItens itens={superTags} />
             </section>
         </>
     )

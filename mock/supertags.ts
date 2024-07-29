@@ -41,7 +41,7 @@ export const  supertagsMock = [
         name: 'tag4',
         icon: "icone4",
         type: 4,
-        father_id:  1
+        father_id:  3
     },
     {
         id: 5,

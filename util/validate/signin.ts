@@ -36,7 +36,6 @@ export async function validateSignin(name: string, user: string, password: strin
         }
     }
 
-    console.log(newValidateSigninMessages)
     return newValidateSigninMessages
 }
 
