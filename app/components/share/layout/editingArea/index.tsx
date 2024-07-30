@@ -32,17 +32,15 @@ export function EditingArea(){
         ))
     }
 
-
-
-
     const handleSave = () => {
-
         if(selected.id === 0){
             dispatch(superTagActions.createSuperTag(selected))
         }else{
             dispatch(superTagActions.replaceSuperTag(selected))
         }
     }
+
+    if(selected.id === 0) return null
 
     return <div className="flex flex-1 bg-black px-6 py-12"> 
                 <div className="relative flex gap-3" >

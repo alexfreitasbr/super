@@ -22,9 +22,9 @@ export default function Home() {
         <SideBar>
           <AdminBoard />
           <MenuSuperTags />
-          {/* <Button style="dark">
+          <Button style="dark">
             <IconPlus /><span>Novo supertag</span>
-          </Button> */}
+          </Button>
         </SideBar>
         <EditingArea />
       </>

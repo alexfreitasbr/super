@@ -1,18 +1,19 @@
 import { SuperTagType } from "@/types/SuperTag"
-import { IconChevronRight, IconChevronDown } from "@tabler/icons-react"
+import { IconChevronRight, IconChevronDown, IconHash } from "@tabler/icons-react"
 import { useState } from "react"
 import { selectedActions } from '@/store/selected-slice'
 import { SuperTagsRootStateType } from '@/types/SuperTag'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { SuperTagsItens } from "../superTagItens"
+import Image from 'next/image'
+
 
 type SuperTagItemProps = {
-    label: string,
     item: SuperTagType
 }
 
-export function SuperTagItem({ label, item }: SuperTagItemProps) {
+export function SuperTagItem({item}: SuperTagItemProps) {
     const [isOpen, setIsOpen] = useState(false)
     const dispatch = useDispatch()
 
@@ -28,13 +29,17 @@ export function SuperTagItem({ label, item }: SuperTagItemProps) {
     }
 
     return <>
-        <li className="flex flex-col gap-2 " >
-            <span className="flex  gap-2 cursor-pointer text-white" >
+        <li >
+            <span className="flex  cursor-pointer text-white" >
                 <span onClick={handleOpen} className={`${superTagChields && superTagChields.length > 0 &&  "hover:text-yellow-500"}`}>
                     {!isOpen ? <IconChevronRight /> : <IconChevronDown />}
                 </span>
-                <span className="hover:text-yellow-500" onClick={handleSelect}>
-                {label}
+
+                <span className="flex gap-2 hover:text-yellow-500" onClick={handleSelect}>
+                    <span className={`flex items-center justify-center relative w-6 h-6  ${!item.icon && "bg-white text-black"}` }>
+                        {item.icon && <Image src={item.icon} alt="emogin" fill /> || <IconHash size={22}/>}
+                    </span>
+                    {item.name}
                 </span>
             </span>
         </li>

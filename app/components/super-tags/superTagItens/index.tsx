@@ -8,11 +8,11 @@ type SuperTagItemProp = {
 
 export function SuperTagsItens({ itens }: SuperTagItemProp) {
    
-    const renderSuperTags = itens.map((item) => <SuperTagItem key={item.id+item.name} label={item.name} item={item}/>)
+    const renderSuperTags = itens.map((item) => <SuperTagItem key={item.id+item.name} item={item}/>)
         
     return (
         <nav>
-           {itens && <ul className="flex flex-col gap-1 text-white text-base ">
+           {itens && <ul className="flex flex-col gap-3 text-white text-base ">
                 {renderSuperTags}
             </ul>}
         </nav>

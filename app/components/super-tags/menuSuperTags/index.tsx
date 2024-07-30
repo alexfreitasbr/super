@@ -5,6 +5,7 @@ import { superTagActions } from '@/store/supertag-slice'
 import { supertagsMock } from '@/mock/supertags'
 import { SuperTagsRootStateType } from '@/types/SuperTag'
 import { SuperTagsItens } from '../superTagItens'
+import { useMemo } from 'react';
 export function MenuSuperTags() {
     const dispatch = useDispatch()
 
@@ -14,13 +15,15 @@ export function MenuSuperTags() {
         ))
     }, [dispatch])
 
-    const superTags = useSelector((state: SuperTagsRootStateType) => state.superTag.list.filter((item)=>!item.father_id ))
+    const superTags = useSelector((state: SuperTagsRootStateType) => state.superTag.list)
+
+    const superTagsFathers = useMemo(() => superTags.filter((item) => !item.father_id), [superTags]);
 
     return (
         <>
             <section>
-                <h2 className="text-white text-base font-semibold">SUPERTAGS</h2>
-                <SuperTagsItens itens={superTags} />
+                <h2 className="text-white text-base font-semibold mb-3">SUPERTAGS</h2>
+                <SuperTagsItens itens={superTagsFathers} />
             </section>
         </>
     )
