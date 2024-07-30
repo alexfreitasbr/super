@@ -2,7 +2,7 @@ export const  supertagsMock = [
     {
         id: 1,
         name: 'tag1',
-        icon: "icone1",
+        icon: null, 
         type: 1,
         father_id:  null,
         properties:[{
@@ -25,28 +25,28 @@ export const  supertagsMock = [
     {
         id: 2,
         name: 'tag2',
-        icon: "icone2",
+        icon: null,
         type: 2,
         father_id:  null
     },
     {
         id: 3,
         name: 'tag3',
-        icon: "icone15",
+        icon: null,
         type: 5,
         father_id:  1
     },
     {
         id: 4,
         name: 'tag4',
-        icon: "icone4",
+        icon: null,
         type: 4,
         father_id:  3
     },
     {
         id: 5,
         name: 'tag5',
-        icon: "icone5",
+        icon: null,
         type: 5,
         father_id:  null
     },

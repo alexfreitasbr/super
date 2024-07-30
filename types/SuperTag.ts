@@ -1,5 +1,5 @@
 import { Properties } from '@/types/Property'
-
+import { WritableDraft } from 'immer'
 export type SuperTagType = {
     id: number 
     name: string
@@ -21,7 +21,7 @@ export type SuperTagsRootStateType = {
 export type ItitialSuperTags = {list:SupertagsType | []}
 
 export type ItitialSelected = {
-    superTag:SupertagsType | null
+    superTag:SuperTagType
 }
 
 export type SelectedRootStateType = {

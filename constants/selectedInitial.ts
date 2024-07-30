@@ -2,5 +2,12 @@ import { ItitialSelected } from "@/types/SuperTag";
 
 
 export const SelectedInitalState:ItitialSelected = {
-    superTag: null
+    superTag: {
+        id: 0, 
+        name: "",
+        icon: "",
+        type: 1,
+        father_id: 0,
+        properties:  undefined
+    }
 }
