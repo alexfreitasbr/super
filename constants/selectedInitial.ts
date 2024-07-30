@@ -7,7 +7,7 @@ export const SelectedInitalState:ItitialSelected = {
         name: "",
         icon: "",
         type: 1,
-        father_id: 0,
+        father_id: null,
         properties:  undefined
     }
 }

@@ -17,8 +17,8 @@ export function SigninPopup() {
                 <Input type="text" title={Labels.email} label="user" placeHolder={PlaceHolders.email} required tooltip={ToolTips.toLogin} message={state?.userError}/>
                 <Input type="password" title={Labels.password} label="password" placeHolder={PlaceHolders.password} required tooltip={ToolTips.password} message={state?.passwordError}/>
                 <Input type="password" title={Labels.repeatPassword} label="repeatPassword" placeHolder={PlaceHolders.passwordRepeat} required message={state?.passwordRepeatError}/>
-                <Button label={Labels.register}  type="submit"/>
-                <Button style="dark" label={Labels.goToLogin} link="/login"/>
+                {/* <Button label={Labels.register}  type="submit"/>
+                <Button style="dark" label={Labels.goToLogin} link="/login"/> */}
             </form>
         </div>
     </div>

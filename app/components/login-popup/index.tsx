@@ -34,8 +34,8 @@ export function LoginPopup() {
             <form className="flex flex-col gap-4" action={formAction}>
                 <Input type="text" title={Labels.email} placeHolder={PlaceHolders.user} label="user" required message={state?.userError} />
                 <Input type="text" title={Labels.password} placeHolder={PlaceHolders.password} label="password" required message={state?.passwordError}/>
-                <Button label={Labels.login} type="submit"/>
-                <Button style="dark" label={Labels.goToRegister} link="/signin"/>
+                {/* <Button label={Labels.login} type="submit"/>
+                <Button style="dark" label={Labels.goToRegister} link="/signin"/> */}
             </form>
         </div>
     </div>
