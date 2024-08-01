@@ -7,6 +7,7 @@ import { MenuSuperTags } from '../components/super-tags/menuSuperTags';
 import { Button } from "../components/share/forms/button";
 import { IconPlus } from "@tabler/icons-react"
 import { EditingArea } from '../components/share/layout/editingArea';
+import { CreateSuperTag } from '../components/super-tags/CreateSuperTag';
 // import { AutenticatedType, RootStateType } from '@/types/auth'
 // import { redirect } from 'next/navigation'
 // import { useSelector } from 'react-redux'
@@ -22,9 +23,7 @@ export default function Home() {
         <SideBar>
           <AdminBoard />
           <MenuSuperTags />
-          <Button style="dark">
-            <IconPlus /><span>Novo supertag</span>
-          </Button>
+          <CreateSuperTag />
         </SideBar>
         <EditingArea />
       </>

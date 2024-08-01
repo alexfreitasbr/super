@@ -8,6 +8,9 @@ const selectedReducer = createSlice({
         selectSuperTag(state, action) {
             state.superTag = action.payload
         },
+        resetSuperTag(state) {
+            state.superTag = SelectedInitalState.superTag
+        },
 
         setId(state, action) {
             state.superTag = {

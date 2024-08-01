@@ -1,8 +1,8 @@
 import { Properties } from '@/types/Property'
 import { WritableDraft } from 'immer'
 export type SuperTagType = {
-    id: number 
-    name: string
+    id: number | null
+    name: string | null
     icon: string | null
     type: 1 | 2
     father_id: number | null
