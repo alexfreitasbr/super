@@ -4,8 +4,6 @@ import store from '@/store'
 import { SideBar } from '../components/share/layout/sideBar';
 import { AdminBoard } from '../components/share/layout/admin';
 import { MenuSuperTags } from '../components/super-tags/menuSuperTags';
-import { Button } from "../components/share/forms/button";
-import { IconPlus } from "@tabler/icons-react"
 import { EditingArea } from '../components/share/layout/editingArea';
 import { CreateSuperTag } from '../components/super-tags/CreateSuperTag';
 // import { AutenticatedType, RootStateType } from '@/types/auth'

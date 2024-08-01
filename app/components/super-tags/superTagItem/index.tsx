@@ -1,4 +1,4 @@
-import { SuperTagType } from "@/types/SuperTag"
+import { SelectedRootStateType, SuperTagType } from "@/types/SuperTag"
 import { IconChevronRight, IconChevronDown, IconHash } from "@tabler/icons-react"
 import { useState } from "react"
 import { selectedActions } from '@/store/selected-slice'
@@ -10,7 +10,7 @@ import Image from 'next/image'
 
 
 type SuperTagItemProps = {
-    item: SuperTagType
+    item: SuperTagType 
 }
 
 export function SuperTagItem({item}: SuperTagItemProps) {
@@ -19,6 +19,7 @@ export function SuperTagItem({item}: SuperTagItemProps) {
 
     const superTags = useSelector((state: SuperTagsRootStateType) => state.superTag.list)
     const superTagChields = superTags?.filter((subItem)=> subItem.father_id === item.id )
+    const selectedId = useSelector((state: SelectedRootStateType) => state.selected.superTag.id) 
 
     function handleOpen() {
         if (!superTagChields || superTagChields.length === 0) return
@@ -27,6 +28,8 @@ export function SuperTagItem({item}: SuperTagItemProps) {
     function handleSelect() {
         dispatch(selectedActions.selectSuperTag(item))
     }
+
+    const selected = selectedId === item.id || item.father_id
 
     return <>
         <li >
@@ -39,7 +42,7 @@ export function SuperTagItem({item}: SuperTagItemProps) {
                     <span className={`flex items-center justify-center relative w-6 h-6  ${!item.icon && "bg-white text-black"}` }>
                         {item.icon && <Image src={item.icon} alt="emogin" fill /> || <IconHash size={22}/>}
                     </span>
-                    {item.name}
+                    <span  className={`${selected && "text-yellow-500 font-bold uppercase" }`}>{item.name}</span>
                 </span>
             </span>
         </li>
